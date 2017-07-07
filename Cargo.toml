@@ -1,6 +1,8 @@
 [package]
 name = "chroniker"
 version = "0.1.0"
+description="A simple library to help with timers and sleeping for benchmarking programs"
+license="MIT"
 authors = ["DevOrc <ncharlton002@gmail.com>"]
 
 [dependencies]
