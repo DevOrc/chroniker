@@ -9,7 +9,7 @@ fn main() {
     let timer = Timer::new();
 
     //Do some stuff
-    chroniker::sleep(250);
+    chroniker::sleep(1100);
 
     //Print the time it took to run
     println!("Time: {:?}", timer);
@@ -36,7 +36,7 @@ fn main() {
     timer.reset();
 
     //Do some operations
-    chroniker::sleep(250);
+    chroniker::sleep(1750);
 
     println!("Time: {:?}", timer);
 }
