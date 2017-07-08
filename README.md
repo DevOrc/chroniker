@@ -48,6 +48,11 @@ Covers how to get the UNIX time
 ```
 $ cargo run --example millis_time
 ```
+#### Units
+Covers how to convert time units
+```
+$ cargo run --example units
+```
 
 ## TODO
 
