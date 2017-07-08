@@ -9,15 +9,15 @@ fn main() {
     let timer = Timer::new();
 
     //Do some stuff
-    chroniker::sleep(1100);
-
-    //Print the time it took to run
-    println!("Time: {:?}", timer);
-
-    //Do some more operations
     chroniker::sleep(250);
 
-    //Print the results again
+    //Print the milliseconds it took to run
+    println!("Time: {} ms", timer.elapsed_millis());
+
+    //Do some more operations
+    chroniker::sleep(1000);
+
+    //Print the results
     println!("Time: {:?}", timer);
 
     //Now lets try to reset the results.
