@@ -1,8 +1,9 @@
 [package]
 name = "chroniker"
-version = "0.2.0"
-description="A simple library to help with timers and sleeping for benchmarking programs"
+version = "0.3.0"
+description="A simple library to help with time"
 license="MIT"
+keywords = ["time"]
 authors = ["DevOrc <ncharlton002@gmail.com>"]
 repository="https://github.com/DevOrc/chroniker"
 
