@@ -53,7 +53,3 @@ Covers how to convert time units
 ```
 $ cargo run --example units
 ```
-
-## TODO
-
-1. Add more to string functions to the timer implementation
