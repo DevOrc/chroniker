@@ -52,5 +52,4 @@ $ cargo run --example millis_time
 ## TODO
 
 1. Add more to string functions to the timer implementation
-2. Add a get_unix_time functions
-3. Add functions to help convert different time units (nanoseconds, milliseconds, seconds, minutes, etc)
+2. Add functions to help convert different time units (nanoseconds, milliseconds, seconds, minutes, etc)
