@@ -57,4 +57,3 @@ $ cargo run --example units
 ## TODO
 
 1. Add more to string functions to the timer implementation
-2. Add functions to help convert different time units (nanoseconds, milliseconds, seconds, minutes, etc)
