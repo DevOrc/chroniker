@@ -7,10 +7,12 @@ pub enum TimeUnit{
     Minute
 }
 
+///Converts two different time units. See the example called "units"
 pub fn convert(from: TimeUnit, to: TimeUnit, value: u64) -> u64{
     from_nano(to, to_nano(from, value))
 }
 
+//Coverts the time of some unit to nanoseconds
 fn to_nano(from: TimeUnit, value: u64) -> u64{
     match from{
         TimeUnit::Nanosecond => value,
@@ -20,6 +22,7 @@ fn to_nano(from: TimeUnit, value: u64) -> u64{
     }
 }
 
+//Converts a time in nanoseconds to another unit
 fn from_nano(to: TimeUnit, value: u64) -> u64{
     match to{
         TimeUnit::Nanosecond => value,
