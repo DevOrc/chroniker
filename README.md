@@ -38,12 +38,12 @@ To see a complete version see the "getting_started" example. Run:
 
 ## Examples
 Most of the other utilities are covered in examples.
-###### Getting Started
+#### Getting Started
 Covers the Timer API
 ```
 $ cargo run --example getting_started
 ```
-###### Millis Time
+#### Millis Time
 Covers how to get the UNIX time
 ```
 $ cargo run --example millis_time
