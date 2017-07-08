@@ -26,7 +26,25 @@ impl Timer{
 
 impl fmt::Debug for Timer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.elapsed_millis())
+        let mut seconds = 0;
+        let mut millis = self.elapsed_millis();
+        let mut minutes = 0;
+
+        while millis >= 1000{
+            millis -= 1000;
+            seconds += 1;
+        }
+
+        while seconds >= 60{
+            seconds -= 60;
+            minutes += 1;
+        }
+
+        if minutes != 0{
+            return write!(f, "{}:{}.{}", minutes, seconds, millis);
+        }
+
+        write!(f, "{}.{}", seconds, millis)
     }
 }
 
