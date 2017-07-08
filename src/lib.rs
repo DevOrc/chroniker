@@ -1,4 +1,3 @@
-
 use std::time::Instant;
 use std::fmt;
 use std::thread;
