@@ -3,6 +3,7 @@ use std::fmt;
 use std::thread;
 use std::time::{SystemTime, UNIX_EPOCH, Duration};
 
+pub mod units;
 
 pub struct Timer{
     time: Instant
