@@ -2,7 +2,7 @@
 A simple library to help with time in rust
 
 ## Usage
-Chroniker has two main functions. The sleep function and the Timer API.
+Chroniker has two main functions. The sleep function and the Timer API. However it also has some other utilities. One of them is the function to get the unix time.
 
 #### The Sleep Function
 The first, the sleep function is simply there too make sleeping simple. For instance, the next example sleeps the program for 1 second (or 1000 milliseconds).   
@@ -35,11 +35,21 @@ bar();
 println!("Timer: {:?}", timer);
 ```
 To see a complete version see the "getting_started" example. Run:
+
+## Examples
+Most of the other utilities are covered in examples.
+###### Getting Started
+Covers the Timer API
 ```
 $ cargo run --example getting_started
 ```
+###### Millis Time
+Covers how to get the UNIX time
+```
+$ cargo run --example millis_time
+```
 
-## Todo
+## TODO
 
 1. Add more to string functions to the timer implementation
 2. Add a get_unix_time functions
