@@ -21,6 +21,29 @@ impl Timer{
         Timer{time: Instant::now()}
     }
 
+    ///Similar to elapsed_millis. Gets the elapsed time in the unit passed.
+    ///# Examples
+    ///
+    ///```
+    ///let timer = timer::new();
+    ///```
+    ///Now lets do some "operations"
+    ///
+    ///```
+    ///chroniker::sleep(1000);
+    ///```
+    ///
+    ///Now lets check out the total time passed in seconds.
+    ///This will print 1
+    ///
+    ///```
+    ///let elapsed_sec = timer.get_elapsed(TimeUnit::Second);
+    ///println!("Timer: {}", elapsed_sec);
+    ///```
+    pub fn get_elapsed(&self, unit: units::TimeUnit) -> u64{
+        units::convert(units::TimeUnit::Millisecond, unit, self.elapsed_millis())
+    }
+
     ///Returns the amount of milliseconds since the
     ///timer was created or reset.
     ///# Examples
@@ -28,7 +51,7 @@ impl Timer{
     ///```
     ///let timer = timer::new();
     ///```
-    ///Now lets do some operations
+    ///Now lets do some "operations"
     ///
     ///```
     ///chroniker::sleep(1000);
@@ -76,6 +99,7 @@ impl Timer{
 }
 
 impl fmt::Debug for Timer {
+
     ///Prints out the time.
     ///# Format
     ///
