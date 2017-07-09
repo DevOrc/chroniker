@@ -7,17 +7,11 @@ use chroniker::units::TimeUnit;
 
 fn main(){
     //Lets see how many Nanoseconds are in each unit
-    let units = [TimeUnit::Nanosecond, TimeUnit::Millisecond, TimeUnit::Second, TimeUnit::Minute];
+    let units = [TimeUnit::Nanosecond, TimeUnit::Millisecond, TimeUnit::Second, TimeUnit::Minute,
+        TimeUnit::Hour, TimeUnit::Day, TimeUnit::Week, TimeUnit::Year];
 
-    for unit in 0..4 {
+    for unit in 0..units.len() {
         let nano_per_unit = units::convert(units[unit], TimeUnit::Nanosecond, 1);
         println!("In one {:?} there are {} nanosecond(s)", units[unit], nano_per_unit);
     }
-
-    //Now Lets see how many millseconds in an hour
-    let millis_in_hour = units::convert(TimeUnit::Minute, TimeUnit::Nanosecond, 60);
-
-    println!("In one Hour there are {} nanosecond(s)", millis_in_hour);
-
-
 }

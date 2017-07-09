@@ -6,7 +6,9 @@ pub enum TimeUnit{
     Second,
     Minute,
     Hour,
-    Day
+    Day,
+    Week,
+    Year
 }
 
 ///Converts two different time units. See the example called "units"
@@ -32,7 +34,9 @@ fn to_nano(from: TimeUnit, value: u64) -> u64{
         TimeUnit::Second => to_nano(TimeUnit::Millisecond, value * 1000),
         TimeUnit::Minute => to_nano(TimeUnit::Second, value * 60),
         TimeUnit::Hour => to_nano(TimeUnit::Minute, value * 60),
-        TimeUnit::Day => to_nano(TimeUnit::Hour, value * 24)
+        TimeUnit::Day => to_nano(TimeUnit::Hour, value * 24),
+        TimeUnit::Week => to_nano(TimeUnit::Day, value * 7),
+        TimeUnit::Year => to_nano(TimeUnit::Week, value * 52)
     }
 }
 
@@ -43,7 +47,9 @@ fn from_nano(to: TimeUnit, value: u64) -> u64{
         TimeUnit::Second => from_nano(TimeUnit::Millisecond, value / 1000),
         TimeUnit::Minute => from_nano(TimeUnit::Second, value / 60),
         TimeUnit::Hour => from_nano(TimeUnit::Minute, value / 60),
-        TimeUnit::Day => from_nano(TimeUnit::Hour, value / 24)
+        TimeUnit::Day => from_nano(TimeUnit::Hour, value / 24),
+        TimeUnit::Week => from_nano(TimeUnit::Day, value / 7),
+        TimeUnit::Year => from_nano(TimeUnit::Week, value / 52)
     }
 }
 
