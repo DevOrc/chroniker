@@ -104,14 +104,10 @@ impl fmt::Debug for Timer {
     ///$ 1:15.699
     ///```
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let mut seconds = 0;
-        let mut millis = self.elapsed_millis();
-        let mut minutes = 0;
 
-        while millis >= 1000{
-            millis -= 1000;
-            seconds += 1;
-        }
+        let millis = self.elapsed_millis() % 1000;
+        let mut seconds = millis / 1000;
+        let mut minutes = seconds / 60;
 
         while seconds >= 60{
             seconds -= 60;
