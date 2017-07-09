@@ -16,6 +16,8 @@ impl Timer{
     ///# Examples
     ///
     ///```
+    ///use chroniker::Timer;
+    ///
     ///let timer = Timer::new();
     ///```
     pub fn new() -> Timer{
@@ -26,20 +28,15 @@ impl Timer{
     ///# Examples
     ///
     ///```
-    ///let timer = timer::new();
-    ///```
-    ///Now lets do some "operations"
+    ///use chroniker::Timer;
+    ///use chroniker::units::TimeUnit;
     ///
-    ///```
+    ///let timer = Timer::new();
+    ///
     ///chroniker::sleep(1000);
-    ///```
     ///
-    ///Now lets check out the total time passed in seconds.
-    ///This will print 1
-    ///
-    ///```
     ///let elapsed_sec = timer.get_elapsed(TimeUnit::Second);
-    ///println!("Timer: {}", elapsed_sec);
+    ///println!("Timer: {}", elapsed_sec); //Prints "1"
     ///```
     pub fn get_elapsed(&self, unit: units::TimeUnit) -> u64{
         units::convert(units::TimeUnit::Millisecond, unit, self.elapsed_millis())
@@ -50,20 +47,16 @@ impl Timer{
     ///# Examples
     ///
     ///```
-    ///let timer = timer::new();
-    ///```
-    ///Now lets do some "operations"
+    ///use chroniker::Timer;
     ///
-    ///```
+    /// //Create the timer
+    ///let timer = Timer::new();
+    ///
+    /// //Do some "operations"
     ///chroniker::sleep(1000);
-    ///```
     ///
-    ///Now lets check out the total time passed.
-    ///This will print 1000 or 1001
-    ///
-    ///```
     ///let elapsed_millis = timer.elapsed_millis();
-    ///println!("Timer: {}", elapsed_millis);
+    ///println!("Timer: {}", elapsed_millis);//Prints 1000
     ///```
     pub fn elapsed_millis(&self) -> u64{
         (self.time.elapsed().as_secs() * 1000) + ((self.time.elapsed().subsec_nanos() / 1_000_000) as u64)
@@ -74,24 +67,17 @@ impl Timer{
     ///# Examples
     ///
     ///```
-    ///let mut timer = timer::new();
+    ///use chroniker::Timer;
+    ///
+    ///let mut timer = Timer::new();
     ///chroniker::sleep(1000);
-    ///```
     ///
-    ///Now lets check out the total time passed.
-    ///This will print 1000 or 1001
-    ///
-    ///```
     ///let elapsed_millis = timer.elapsed_millis();
-    ///println!("Timer: {}", elapsed_millis);
-    ///```
+    ///println!("Timer: {}", elapsed_millis);//Prints 1000
     ///
-    ///However, if you reset it and then print out the results,
-    ///the program will output 0.000.
-    ///
-    ///```
+    /// //Reset the timer to 0
     ///timer.reset();
-    ///println!("Timer: {:?}", timer);
+    ///println!("Timer: {:?}", timer); //Prints 0
     ///```
     pub fn reset(&mut self){
         self.time = Instant::now();
@@ -106,13 +92,13 @@ impl fmt::Debug for Timer {
     ///
     ///If the time is 1500 milliseconds (1.5 seconds) it will print out
     ///
-    ///```
+    ///```command_line
     ///$ 1.500
     ///```
     ///
     ///If the time is 75699 milliseconds (1 minute, 15 seconds, and 699 milliseconds) it will print out
     ///
-    ///```
+    ///```command_line
     ///$ 1:15.699
     ///```
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -147,12 +133,14 @@ impl fmt::Debug for Timer {
 ///chroniker::sleep(1000);
 ///```
 ///
-///However to sleep for one hour you can use
+///However to sleep for 5 seconds you can use
 ///the convert function:
 ///
 ///```
-///use chroniker::unit;
-///chroniker::sleep(unit::covert(TimeUnit::Minutes, TimeUnit::Milliseconds, 60));
+///use chroniker::units;
+///use chroniker::units::TimeUnit;
+///
+///chroniker::sleep(units::convert(TimeUnit::Second, TimeUnit::Millisecond, 5));
 ///```
 pub fn sleep(time: u64){
     thread::sleep(Duration::from_millis(time));
@@ -162,6 +150,7 @@ pub fn sleep(time: u64){
 ///# Examples
 ///
 ///```
+///
 ///let unix_time = chroniker::current_time_millis();
 ///```
 pub fn current_time_millis() -> u64{
