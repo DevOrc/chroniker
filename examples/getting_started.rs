@@ -8,14 +8,8 @@ fn main() {
     //Creates and starts the timer
     let timer = Timer::new();
 
-    //Do some stuff
-    chroniker::sleep(250);
-
-    //Print the milliseconds it took to run
-    println!("Time: {} ms", timer.elapsed_millis());
-
     //Do some more operations
-    chroniker::sleep(1000);
+    chroniker::sleep(1001);
 
     //Print the results
     println!("Time: {:?}", timer);
@@ -36,5 +30,5 @@ fn main() {
     //Do some operations
     chroniker::sleep(1750);
 
-    println!("Time: {:?}", timer);
+    println!("Time: {} ms", timer.elapsed_millis());
 }

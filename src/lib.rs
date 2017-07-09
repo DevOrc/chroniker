@@ -105,7 +105,7 @@ impl fmt::Debug for Timer {
     ///```
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
 
-        let millis = self.elapsed_millis() % 1000;
+        let millis: f64 = (self.elapsed_millis() % 1000) as f64 / 1000.0;
         let mut seconds = self.elapsed_millis() / 1000;
         let mut minutes = seconds / 60;
 
@@ -114,11 +114,15 @@ impl fmt::Debug for Timer {
             minutes += 1;
         }
 
+        //Convert the number into a string and skip then "0." part of "0.99999"
+        let milli_vec: Vec<char> = millis.to_string().chars().skip(2).collect();
+        let milli_str: String = milli_vec.iter().cloned().collect();//Turn the vector into a string
+
         if minutes != 0{
-            return write!(f, "{}:{}.{}", minutes, seconds, millis);
+            return write!(f, "{}:{}.{}", minutes, seconds, milli_str);
         }
 
-        write!(f, "{}.{}", seconds, millis)
+        write!(f, "{}.{}", seconds, milli_str)
     }
 }
 
