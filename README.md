@@ -1,5 +1,5 @@
 # Chroniker
-A simple library to help with time in rust
+A simple library to help with time in rust. [Documentation](https://docs.rs/crate/chroniker)
 
 ## Usage
 Chroniker has two main functions. The sleep function and the Timer API. However it also has some other utilities. One of them is the function to get the unix time.
