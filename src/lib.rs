@@ -107,22 +107,22 @@ impl fmt::Debug for Timer {
 
         let millis: f64 = (self.elapsed_millis() % 1000) as f64 / 1000.0;
         let mut seconds = self.elapsed_millis() / 1000;
-        let mut minutes = seconds / 60;
+        let minutes = seconds / 60;
+        seconds -= minutes * 60;
 
-        while seconds >= 60{
-            seconds -= 60;
-            minutes += 1;
-        }
+        let mut seconds_string: String = if seconds < 10 && minutes > 0
+            {"0".to_string()}else{"".to_string()};
+        seconds_string.push_str(&seconds.to_string());
 
         //Convert the number into a string and skip then "0." part of "0.99999"
         let milli_vec: Vec<char> = millis.to_string().chars().skip(2).collect();
         let milli_str: String = milli_vec.iter().cloned().collect();//Turn the vector into a string
 
         if minutes != 0{
-            return write!(f, "{}:{}.{}", minutes, seconds, milli_str);
+            return write!(f, "{}:{}.{}", minutes, seconds_string, milli_str);
         }
 
-        write!(f, "{}.{}", seconds, milli_str)
+        write!(f, "{}.{}", seconds_string, milli_str)
     }
 }
 
