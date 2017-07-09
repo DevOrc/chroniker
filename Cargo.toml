@@ -5,7 +5,7 @@ description="A simple library to help with time"
 license="MIT"
 keywords = ["time"]
 authors = ["DevOrc"]
-documentation="https://docs.rs/crate/chroniker"
+documentation="https://docs.rs/chroniker/0.4.0/chroniker/"
 repository="https://github.com/DevOrc/chroniker"
 
 [dependencies]
