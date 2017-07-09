@@ -4,7 +4,9 @@ pub enum TimeUnit{
     Nanosecond,
     Millisecond,
     Second,
-    Minute
+    Minute,
+    Hour,
+    Day
 }
 
 ///Converts two different time units. See the example called "units"
@@ -25,7 +27,9 @@ fn to_nano(from: TimeUnit, value: u64) -> u64{
         TimeUnit::Nanosecond => value,
         TimeUnit::Millisecond => value * 1_000_000,
         TimeUnit::Second => to_nano(TimeUnit::Millisecond, value * 1000),
-        TimeUnit::Minute => to_nano(TimeUnit::Second, value * 60)
+        TimeUnit::Minute => to_nano(TimeUnit::Second, value * 60),
+        TimeUnit::Hour => to_nano(TimeUnit::Minute, value * 60),
+        TimeUnit::Day => to_nano(TimeUnit::Hour, value * 24)
     }
 }
 
@@ -34,7 +38,9 @@ fn from_nano(to: TimeUnit, value: u64) -> u64{
         TimeUnit::Nanosecond => value,
         TimeUnit::Millisecond => value / 1_000_000,
         TimeUnit::Second => from_nano(TimeUnit::Millisecond, value / 1000),
-        TimeUnit::Minute => from_nano(TimeUnit::Second, value / 60)
+        TimeUnit::Minute => from_nano(TimeUnit::Second, value / 60),
+        TimeUnit::Hour => from_nano(TimeUnit::Minute, value / 60),
+        TimeUnit::Day => from_nano(TimeUnit::Hour, value / 24)
     }
 }
 
@@ -43,6 +49,9 @@ fn test_convert(){
     assert!(convert(TimeUnit::Millisecond, TimeUnit::Second, 3000) == 3);
     assert!(convert(TimeUnit::Millisecond, TimeUnit::Nanosecond, 1) == 1_000_000);
     assert!(convert(TimeUnit::Minute, TimeUnit::Nanosecond, 2) == 120_000_000_000);
+    assert!(convert(TimeUnit::Day, TimeUnit::Minute, 5) == 7200);
+    assert!(convert(TimeUnit::Day, TimeUnit::Minute, 5) == 7200);
+    assert!(convert(TimeUnit::Day, TimeUnit::Nanosecond, 5) == (4.32e+14) as u64);
 }
 
 #[test]
