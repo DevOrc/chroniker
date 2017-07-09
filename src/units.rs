@@ -15,6 +15,9 @@ pub enum TimeUnit{
 ///To convert one hour to nanoseconds:
 ///
 ///```
+///use chroniker::units;
+///use chroniker::units::TimeUnit;
+///
 ///let millis_in_hour = units::convert(TimeUnit::Minute, TimeUnit::Nanosecond, 60);
 ///println!("In one Hour there are {} nanosecond(s)", millis_in_hour);
 ///```
