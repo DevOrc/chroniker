@@ -104,12 +104,12 @@ impl fmt::Debug for Timer {
     ///$ 1:15.699
     ///```
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-
         let millis: f64 = (self.elapsed_millis() % 1000) as f64 / 1000.0;
         let mut seconds = self.elapsed_millis() / 1000;
         let minutes = seconds / 60;
         seconds -= minutes * 60;
 
+        //Add the zero in 1:01 so its not 1:1
         let mut seconds_string: String = if seconds < 10 && minutes > 0
             {"0".to_string()}else{"".to_string()};
         seconds_string.push_str(&seconds.to_string());
