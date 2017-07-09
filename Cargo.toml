@@ -1,10 +1,10 @@
 [package]
 name = "chroniker"
-version = "0.3.1"
+version = "0.4.0"
 description="A simple library to help with time"
 license="MIT"
 keywords = ["time"]
-authors = ["DevOrc <ncharlton002@gmail.com>"]
+authors = ["DevOrc"]
 documentation="https://docs.rs/crate/chroniker"
 repository="https://github.com/DevOrc/chroniker"
 
