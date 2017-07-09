@@ -1,11 +1,13 @@
-use std::time::Instant;
 use std::fmt;
 use std::thread;
-use std::time::{SystemTime, UNIX_EPOCH, Duration};
+use std::time::{SystemTime, UNIX_EPOCH, Duration, Instant};
 
 pub mod units;
 
+/// A thin wrapper behind the Instant api from [std::time](https://doc.rust-lang.org/nightly/std/time/).
+///The timer is for timing different parts of a program
 pub struct Timer{
+    /// The actual timer See [std::time::Instant](https://doc.rust-lang.org/nightly/std/time/struct.Instant.html)
     pub time: Instant
 }
 

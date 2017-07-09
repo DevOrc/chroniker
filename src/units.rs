@@ -1,13 +1,26 @@
 
+//! The units module is the most important module in the chroniker library. Most other functions rely on
+//! this module. All it does is convert different TimeUnits.
+
+
 #[derive(Debug, Copy, Clone)]
+///The different Units supported by the chroniker library
 pub enum TimeUnit{
+    ///One billionth of a second.
     Nanosecond,
+    /// One thousandth of a second
     Millisecond,
+    ///One full second
     Second,
+    ///60 Seconds
     Minute,
+    ///60 Minutes
     Hour,
+    ///24 Hours
     Day,
+    /// 7 Days
     Week,
+    /// 52 Weeks
     Year
 }
 
