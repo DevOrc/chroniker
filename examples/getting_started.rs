@@ -31,8 +31,6 @@ fn main() {
     println!("Time: {:?}", timer);
 
     //Lets reset again
-    //Note: Unlike all other functions
-    // this requires a mutable timer
     timer.reset();
 
     //Do some operations
