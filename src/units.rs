@@ -13,7 +13,7 @@
 //!
 
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 ///The different Units supported by the chroniker library
 pub enum TimeUnit{
     ///One billionth of a second.
@@ -47,19 +47,29 @@ pub enum TimeUnit{
 ///println!("In one Hour there are {} nanosecond(s)", millis_in_hour);
 ///```
 pub fn convert(from: TimeUnit, to: TimeUnit, value: u64) -> u64{
-    from_nano(to, to_nano(from, value))
+    let to_nano = to_nano(from, value, to);
+
+    if to_nano.1{
+        return to_nano.0;
+    }
+
+    from_nano(to, to_nano.0)
 }
 
-fn to_nano(from: TimeUnit, value: u64) -> u64{
+fn to_nano(from: TimeUnit, value: u64, goal: TimeUnit) -> (u64, bool){
+    if from == goal{
+        return (value, true)
+    }
+
     match from{
-        TimeUnit::Nanosecond => value,
-        TimeUnit::Millisecond => value * 1_000_000,
-        TimeUnit::Second => to_nano(TimeUnit::Millisecond, value * 1000),
-        TimeUnit::Minute => to_nano(TimeUnit::Second, value * 60),
-        TimeUnit::Hour => to_nano(TimeUnit::Minute, value * 60),
-        TimeUnit::Day => to_nano(TimeUnit::Hour, value * 24),
-        TimeUnit::Week => to_nano(TimeUnit::Day, value * 7),
-        TimeUnit::Year => to_nano(TimeUnit::Week, value * 52)
+        TimeUnit::Nanosecond => (value, false),
+        TimeUnit::Millisecond => to_nano(TimeUnit::Nanosecond, value * 1_000_000, goal),
+        TimeUnit::Second => to_nano(TimeUnit::Millisecond, value * 1000, goal),
+        TimeUnit::Minute => to_nano(TimeUnit::Second, value * 60, goal),
+        TimeUnit::Hour => to_nano(TimeUnit::Minute, value * 60, goal),
+        TimeUnit::Day => to_nano(TimeUnit::Hour, value * 24, goal),
+        TimeUnit::Week => to_nano(TimeUnit::Day, value * 7, goal),
+        TimeUnit::Year => to_nano(TimeUnit::Week, value * 52, goal)
     }
 }
 
