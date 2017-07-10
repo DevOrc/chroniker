@@ -1,6 +1,16 @@
 
 //! The units module is the most important module in the chroniker library. Most other functions rely on
 //! this module. All it does is convert different TimeUnits.
+//!# Examples
+//!For instance to covert 15 minutes to milliseconds you would need to run
+//!
+//!```
+//!use chroniker::units;
+//!use chroniker::units::TimeUnit;
+//!
+//!let mins_in_mills = units::convert(TimeUnit::Minute, TimeUnit::Millisecond, 15);
+//!```
+//!
 
 
 #[derive(Debug, Copy, Clone)]

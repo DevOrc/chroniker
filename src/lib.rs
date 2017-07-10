@@ -1,10 +1,12 @@
+pub mod units;
+
 use std::fmt;
 use std::thread;
 use std::time::{SystemTime, UNIX_EPOCH, Duration, Instant};
+use units::TimeUnit;
 
-pub mod units;
 
-/// A thin wrapper behind the Instant api from [std::time](https://doc.rust-lang.org/nightly/std/time/).
+/// A thin wrapper for [std::time::Instant](https://doc.rust-lang.org/std/time/struct.Instant.html).
 ///The timer is for timing different parts of a program
 pub struct Timer{
     /// The actual timer See [std::time::Instant](https://doc.rust-lang.org/nightly/std/time/struct.Instant.html)
@@ -95,7 +97,7 @@ impl fmt::Debug for Timer {
     ///If the time is 1500 milliseconds (1.5 seconds) it will print out
     ///
     ///```command_line
-    ///$ 1.500
+    ///$ 1.5
     ///```
     ///
     ///If the time is 75699 milliseconds (1 minute, 15 seconds, and 699 milliseconds) it will print out
@@ -103,6 +105,13 @@ impl fmt::Debug for Timer {
     ///```command_line
     ///$ 1:15.699
     ///```
+    ///
+    ///If the time is 1001 milliseconds it will print out
+    ///
+    ///```command_line
+    ///$ 1.001
+    ///```
+    ///
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let millis: f64 = (self.elapsed_millis() % 1000) as f64 / 1000.0;
         let mut seconds = self.elapsed_millis() / 1000;
@@ -148,12 +157,24 @@ pub fn sleep(time: u64){
     thread::sleep(Duration::from_millis(time));
 }
 
-///Returns the current time in milliseconds.
+///Returns the current time since January 1st, 1970 in a given unit.
 ///# Examples
 ///
 ///```
+///use chroniker::units;
+///use chroniker::units::TimeUnit;
 ///
-///let unix_time = chroniker::current_time_millis();
+///let unix_time = chroniker::current_time(TimeUnit::Second);
+///```
+pub fn current_time(unit: TimeUnit) -> u64{
+    units::convert(TimeUnit::Millisecond, unit, current_time_millis())
+}
+
+///Returns the current system time in milliseconds.
+///# Examples
+///
+///```
+///let millis_time = chroniker::current_time_millis();
 ///```
 pub fn current_time_millis() -> u64{
     let start = SystemTime::now();
