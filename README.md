@@ -5,7 +5,7 @@ A simple library to help with time in rust. [Documentation](https://docs.rs/chro
 Chroniker has many utilities. They include:
 - Time Unit Conversion
 - Thread Sleeping
-- Retrieving the current time in milliseconds
+- Retrieving the current system time
 - Timers
 
 ## Examples
