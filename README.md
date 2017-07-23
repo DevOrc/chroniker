@@ -1,5 +1,5 @@
 # Chroniker
-A simple library to help with time in rust. [Documentation](https://docs.rs/chroniker/0.4.1/chroniker/)
+A simple library to help with time in rust. [Documentation](https://docs.rs/chroniker/0.5.0/chroniker/)
 
 ## Utilities
 Chroniker has many utilities. They include:
