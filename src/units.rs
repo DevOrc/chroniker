@@ -34,6 +34,25 @@ pub enum TimeUnit{
     Year
 }
 
+impl TimeUnit{
+
+    ///Converts a unit to another unit. See the example called "units"
+    ///# Examples
+    ///
+    ///To convert one hour to nanoseconds:
+    ///
+    ///```
+    ///use chroniker::units::TimeUnit;
+    ///
+    ///let nano_in_hour = TimeUnit::Hour.to(TimeUnit::Nanosecond, 1);
+    ///println!("In one Hour there are {} nanosecond(s)", nano_in_hour);
+    ///```
+    pub fn to(&self, to: TimeUnit, amount: u64) -> u64{
+        convert(*self, to, amount)
+    }
+
+}
+
 ///Converts two different time units. See the example called "units"
 ///# Examples
 ///
@@ -43,8 +62,8 @@ pub enum TimeUnit{
 ///use chroniker::units;
 ///use chroniker::units::TimeUnit;
 ///
-///let millis_in_hour = units::convert(TimeUnit::Minute, TimeUnit::Nanosecond, 60);
-///println!("In one Hour there are {} nanosecond(s)", millis_in_hour);
+///let nano_in_hour = units::convert(TimeUnit::Minute, TimeUnit::Nanosecond, 60);
+///println!("In one Hour there are {} nanosecond(s)", nano_in_hour);
 ///```
 pub fn convert(from: TimeUnit, to: TimeUnit, value: u64) -> u64{
     from_nano(to, to_nano(from, value))
@@ -82,8 +101,16 @@ fn test_convert(){
     assert!(convert(TimeUnit::Millisecond, TimeUnit::Nanosecond, 1) == 1_000_000);
     assert!(convert(TimeUnit::Minute, TimeUnit::Nanosecond, 2) == 120_000_000_000);
     assert!(convert(TimeUnit::Day, TimeUnit::Minute, 5) == 7200);
-    assert!(convert(TimeUnit::Day, TimeUnit::Minute, 5) == 7200);
     assert!(convert(TimeUnit::Day, TimeUnit::Nanosecond, 5) == (4.32e+14) as u64);
+}
+
+#[test]
+fn test_timeunit_impl(){
+    assert!(TimeUnit::Millisecond.to(TimeUnit::Second, 3000) == 3);
+    assert!(TimeUnit::Millisecond.to(TimeUnit::Nanosecond, 1) == 1_000_000);
+    assert!(TimeUnit::Minute.to(TimeUnit::Nanosecond, 2) == 120_000_000_000);
+    assert!(TimeUnit::Day.to(TimeUnit::Minute, 5) == 7200);
+    assert!(TimeUnit::Day.to(TimeUnit::Nanosecond, 5) == (4.32e+14) as u64);
 }
 
 #[test]

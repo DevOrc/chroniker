@@ -14,4 +14,9 @@ fn main(){
         let nano_per_unit = units::convert(units[unit], TimeUnit::Nanosecond, 1);
         println!("In one {:?} there are {} nanosecond(s)", units[unit], nano_per_unit);
     }
+
+    //You can also just convert it from TimeUnit using the 'to' method
+    let millis_in_5_hours = TimeUnit::Hour.to(TimeUnit::Millisecond, 5);
+    println!("In 5 hours there are {} milliseconds", millis_in_5_hours);
+
 }
